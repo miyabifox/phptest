@@ -32,10 +32,10 @@ class ArticleController extends Controller
 		
 		$article = new Article;
 		$article ->name = $data["name"];
-		$article ->sex = "男";
-		$article ->address = "aaa";
+		$article ->sex = $data["sex"];
+		$article ->address = $data["address"];
 		$article ->email = $data["email"];
-		$article ->birthday = "2016-04-21";
+		$article ->birthday = $data["birthday"];
 		$article ->save();
 		
 		//$article = new Article;
@@ -47,12 +47,40 @@ class ArticleController extends Controller
     }
 
     public function complete() {
-	return "登録が完了しました";
+	return view('article.complete');
     }
 
     public function edit($id){
         $article = Article::findOrFail($id);
-        return view('article.edit')->with('article',$article);
+        return view('article.edit')->with(compact('article'));
     }
+	
+   public function update(Request $request, $id)
+   {
+		$data = $request->all();
+		
+		$article = Article::findOrFail($id);
+		$article ->name = $data["name"];
+		$article ->sex = $data["sex"];
+		$article ->address = $data["address"];
+		$article ->email = $data["email"];
+		$article ->birthday = $data["birthday"];
+		$article ->save();
+		
+		return redirect()->to('article/complete');
+    }
+	
+	public function delete($id)
+	{
+    $article = Article::find($id);
+    return view('article.delete')->with(compact('article'));
+	}
 
+	public function destroy(Request $request)
+	{
+    $data = $request->all();
+    $article = Article::find($data["id"]);
+    $article->delete();
+    return redirect()->to('article/complete');
+	}
 }

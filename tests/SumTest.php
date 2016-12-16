@@ -27,10 +27,10 @@ class SumTest extends TestCase
 		$this->assertEquals($this->HelloController->sum(10,10),20);
     }
 	
-	public function testtext()
-    {
-        $this->visit('/')
-			 ->view()->click()
-             ->dontSee('Error');
-    }
+	//public function testtext()		
+    //{
+    //    $this->visit('/')
+	//		 ->view()->click()
+    //         ->dontSee('Error');
+    //}
 }

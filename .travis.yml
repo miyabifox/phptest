@@ -8,4 +8,4 @@ before_script:
   - php composer.phar install
 
 script:
-  - vendor/bin/phpunit app/Http/Controllers/HelloController.php
+  - vendor/bin/phpunit tests/SumTest.php
